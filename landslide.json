@@ -1,0 +1,38 @@
+[
+  {
+    "id": "IT-2023-ER01",
+    "lat": 44.3012,
+    "lon": 11.4285,
+    "comune": "Monterenzio",
+    "prov": "BO",
+    "regione": "Emilia-Romagna",
+    "data": "Maggio 2023",
+    "tipo": "Colata di fango / detrito",
+    "danni": "Interruzione viabilità SP7 e isolamento frazioni. Censito in relazione tecnica post-evento.",
+    "fonte": "ARPAE / ISPRA IFFI"
+  },
+  {
+    "id": "IT-2023-ER02",
+    "lat": 44.2231,
+    "lon": 11.7742,
+    "comune": "Brisighella",
+    "prov": "RA",
+    "regione": "Emilia-Romagna",
+    "data": "Maggio 2023",
+    "tipo": "Scivolamento / Crollo versante",
+    "danni": "Ampio dissesto idrogeologico su versante agricolo e viabilità locale.",
+    "fonte": "Regione Emilia-Romagna / Protezione Civile"
+  },
+  {
+    "id": "IT-2024-RM01",
+    "lat": 41.9610,
+    "lon": 12.8015,
+    "comune": "Tivoli",
+    "prov": "RM",
+    "regione": "Lazio",
+    "data": "Febbraio 2024",
+    "tipo": "Crollo di roccia",
+    "danni": "Distacco pareti rocciose a ridosso del fondovalle Aniene.",
+    "fonte": "ISPRA / Protezione Civile"
+  }
+]
