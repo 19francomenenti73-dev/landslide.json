@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Nowcasting Italia - Landslide & Hazard Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0d1117; color: #c9d1d9; font-family: system-ui, -apple-system, sans-serif; overflow: hidden; }
+        
+        #header { 
+            height: 40px; 
+            background: #161b22; 
+            padding: 8px 12px; 
+            border-bottom: 2px solid #ff2a5f; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            z-index: 1000;
+        }
+        #header h1 { margin: 0; font-size: 12px; color: #ff2a5f; letter-spacing: 1px; font-weight: 900; text-transform: uppercase; }
+
+        #map { 
+            width: 100%; 
+            height: calc(100vh - 82px); 
+            background: #0d1117; 
+        }
+
+        /* Banner di Attribuzione Legale Ancorato in Basso */
+        #legal-attribution-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 42px;
+            background: #080e1c;
+            border-top: 1px solid rgba(255, 42, 95, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 12px;
+            font-size: 10px;
+            color: #8b949e;
+            z-index: 2000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+        }
+
+        #legal-attribution-banner a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .badge-cc {
+            background: rgba(255, 42, 95, 0.15);
+            color: #ff2a5f;
+            border: 1px solid #ff2a5f;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 800;
+            margin-right: 6px;
+        }
+
+        /* Popup Tattico */
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: #161b22; color: #c9d1d9; border: 1px solid #ff2a5f; }
+        
+        /* Stile Custom Cluster */
+        .marker-cluster-small, .marker-cluster-medium, .marker-cluster-large {
+            background-color: rgba(255, 42, 95, 0.4) !important;
+        }
+        .marker-cluster div {
+            background-color: rgba(255, 42, 95, 0.8) !important;
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h1>🚨 NOWCASTING ITALIA — LANDSLIDE & HAZARD TRACKER</h1>
+        <span id="counter-badge" style="font-size: 10px; color: #4ade80; font-weight: bold;">● CARICAMENTO DATI...</span>
+    </div>
+
+    <div id="map"></div>
+
+    <!-- BANNER FISSO ANCORATO IN BASSO PER CREDITI E LICENZE -->
+    <div id="legal-attribution-banner">
+        <div>
+            <span class="badge-cc">CC-BY 4.0 / IODL</span>
+            <span>FONTI DATI UFFICIALI: </span>
+            <a href="https://www.isprambiente.gov.it" target="_blank">ISPRA (IFFI)</a> | 
+            <a href="https://dati.gov.it" target="_blank">Open Data PA / Regioni DPC</a>
+        </div>
+        <div style="text-align: right; font-size: 9px; color: #6e7681;">
+            Archivio scientifico e divulgativo a cura di Nowcasting Italia.
+        </div>
+    </div>
+
+    <!-- Leaflet & MarkerCluster JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+    <script>
+        const map = L.map('map', { center: [42.5, 12.5], zoom: 6 });
+
+        // Base Cartografica Orografica
+        L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            maxZoom: 17,
+            attribution: 'OpenTopoMap | SRTM Data'
+        }).addTo(map);
+
+        const markersCluster = L.markerClusterGroup({
+            chunkedLoading: true,
+            maxClusterRadius: 50
+        });
+
+        const redLandslideIcon = L.divIcon({
+            className: 'custom-red-pin',
+            html: `<div style="background-color: #ff2a5f; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 8px #ff2a5f;"></div>`,
+            iconSize: [12, 12],
+            iconAnchor: [6, 6]
+        });
+
+        // Caricamento Dinamico del file JSON
+        fetch('./landslide.json')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    const marker = L.marker([item.lat, item.lon], { icon: redLandslideIcon });
+                    
+                    const popupContent = `
+                        <div style="font-family: monospace; line-height: 1.4; max-width: 280px;">
+                            <b style="color: #ff2a5f; font-size: 12px;">🚨 ${item.tipo.toUpperCase()}</b><hr style="border-color:#30363d; margin:5px 0;">
+                            <b>ID Registro:</b> ${item.id}<br>
+                            <b>Località:</b> ${item.comune} (${item.prov}) - ${item.regione}<br>
+                            <b>Data Evento:</b> ${item.data}<br>
+                            <hr style="border-color:#30363d; margin:5px 0;">
+                            <b>Sintesi Danni / Impatto:</b><br>
+                            <span style="color: #8b949e; font-size: 11px;">${item.danni}</span><br><br>
+                            <span style="color: #58a6ff; font-size: 10px;"><b>Fonte:</b> ${item.fonte}</span>
+                        </div>
+                    `;
+                    
+                    marker.bindPopup(popupContent);
+                    markersCluster.addLayer(marker);
+                });
+
+                map.addLayer(markersCluster);
+                document.getElementById('counter-badge').innerText = `● EVENTI IN MAPPA: ${data.length}`;
+            })
+            .catch(err => {
+                console.error("Errore nel caricamento del file JSON:", err);
+                document.getElementById('counter-badge').innerText = "● ERRORE CARICAMENTO DATI";
+            });
+    </script>
+</body>
+</html>
