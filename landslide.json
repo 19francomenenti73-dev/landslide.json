@@ -7,8 +7,8 @@
     "prov": "BO",
     "regione": "Emilia-Romagna",
     "data": "Maggio 2023",
-    "tipo": "Colata di fango / detrito",
-    "danni": "Interruzione viabilità SP7 e isolamento frazioni. Censito in relazione tecnica post-evento.",
+    "tipo": "Colata rapida di fango e detrito",
+    "danni": "Interruzione viabilità SP7 e isolamento frazioni. Censito nel rapporto tecnico post-evento.",
     "fonte": "ARPAE / ISPRA IFFI"
   },
   {
@@ -19,9 +19,81 @@
     "prov": "RA",
     "regione": "Emilia-Romagna",
     "data": "Maggio 2023",
-    "tipo": "Scivolamento / Crollo versante",
+    "tipo": "Scivolamento e crollo di versante",
     "danni": "Ampio dissesto idrogeologico su versante agricolo e viabilità locale.",
     "fonte": "Regione Emilia-Romagna / Protezione Civile"
+  },
+  {
+    "id": "IT-2023-ER03",
+    "lat": 44.1560,
+    "lon": 11.7850,
+    "comune": "Modigliana",
+    "prov": "FC",
+    "regione": "Emilia-Romagna",
+    "data": "Maggio 2023",
+    "tipo": "Colata detritica complessa",
+    "danni": "Dissesto diffuso del reticolo idrografico e versanti collinari.",
+    "fonte": "Protezione Civile / CNR-IRPI"
+  },
+  {
+    "id": "IT-2023-ER04",
+    "lat": 44.0612,
+    "lon": 12.1415,
+    "comune": "Sarsina",
+    "prov": "FC",
+    "regione": "Emilia-Romagna",
+    "data": "Maggio 2023",
+    "tipo": "Scivolamento rotazionale",
+    "danni": "Danni alle infrastrutture viarie secondarie e dissesto dei fondi agricoli.",
+    "fonte": "ISPRA / IFFI"
+  },
+  {
+    "id": "IT-2022-CAM01",
+    "lat": 40.7503,
+    "lon": 13.9011,
+    "comune": "Casamicciola Terme (Ischia)",
+    "prov": "NA",
+    "regione": "Campania",
+    "data": "Novembre 2022",
+    "tipo": "Colata rapida di fango (Debris Flow)",
+    "danni": "Innesco sul Monte Epomeo con travolgimento dell'abitato di Celario. Gravi danni strutturali.",
+    "fonte": "ISPRA / CNR-IRPI / DPC"
+  },
+  {
+    "id": "IT-2023-LOM01",
+    "lat": 45.9810,
+    "lon": 9.8512,
+    "comune": "Niardo",
+    "prov": "BS",
+    "regione": "Lombardia",
+    "data": "Luglio 2022",
+    "tipo": "Colata detritica torrenziale",
+    "danni": "Esonde il torrente Re con accumulo di oltre 100.000 m³ di detriti nel centro abitato.",
+    "fonte": "Arpa Lombardia / Protezione Civile"
+  },
+  {
+    "id": "IT-2024-PIE01",
+    "lat": 45.8521,
+    "lon": 7.9610,
+    "comune": "Alagna Valsesia",
+    "prov": "VC",
+    "regione": "Piemonte",
+    "data": "Giugno 2024",
+    "tipo": "Crollo di parete rocciosa",
+    "danni": "Distacco ad alta quota con accumulo detritico nell'alveo del torrente Sesia.",
+    "fonte": "Arpa Piemonte"
+  },
+  {
+    "id": "IT-2024-VDA01",
+    "lat": 45.7922,
+    "lon": 7.5611,
+    "comune": "Cogne",
+    "prov": "AO",
+    "regione": "Valle d'Aosta",
+    "data": "Giugno 2024",
+    "tipo": "Colata detritica ed esondazione torrenziale",
+    "danni": "Danni alla rete viaria di collegamento e interruzione infrastrutturale.",
+    "fonte": "Regione Autonoma Valle d'Aosta"
   },
   {
     "id": "IT-2024-RM01",
@@ -31,8 +103,68 @@
     "prov": "RM",
     "regione": "Lazio",
     "data": "Febbraio 2024",
-    "tipo": "Crollo di roccia",
-    "danni": "Distacco pareti rocciose a ridosso del fondovalle Aniene.",
-    "fonte": "ISPRA / Protezione Civile"
+    "tipo": "Crollo di roccia in parete",
+    "danni": "Distacco pareti rocciose a ridosso del fondovalle del fiume Aniene.",
+    "fonte": "ISPRA / Protezione Civile Lazio"
+  },
+  {
+    "id": "IT-2023-TOS01",
+    "lat": 43.8812,
+    "lon": 11.0981,
+    "comune": "Vaiano",
+    "prov": "PO",
+    "regione": "Toscana",
+    "data": "Novembre 2023",
+    "tipo": "Frana di scivolamento superficiale",
+    "danni": "Dissesti diffusi lungo la Val di Bisenzio a seguito di precipitazioni estreme.",
+    "fonte": "Regione Toscana / Consorzio di Bonifica"
+  },
+  {
+    "id": "IT-2023-VEN01",
+    "lat": 46.2611,
+    "lon": 12.2150,
+    "comune": "Longarone",
+    "prov": "BL",
+    "regione": "Veneto",
+    "data": "Ottobre 2023",
+    "tipo": "Colata di detrito in alveo",
+    "danni": "Movimento detritico su versante montano con interessamento delle opere di difesa idraulica.",
+    "fonte": "ARPA Veneto"
+  },
+  {
+    "id": "IT-2022-LIG01",
+    "lat": 44.4111,
+    "lon": 8.9312,
+    "comune": "Genova (Val Bisagno)",
+    "prov": "GE",
+    "regione": "Liguria",
+    "data": "Ottobre 2022",
+    "tipo": "Frana di versante ed erosione spondale",
+    "danni": "Movimento franoso a monte del reticolo idrico secondario.",
+    "fonte": "ARPAL Liguria"
+  },
+  {
+    "id": "IT-2023-CAL01",
+    "lat": 38.2150,
+    "lon": 15.8120,
+    "comune": "Scilla",
+    "prov": "RC",
+    "regione": "Calabria",
+    "data": "Gennaio 2023",
+    "tipo": "Colata di fango e materiale litoide",
+    "danni": "Interessamento delle vie di comunicazione costiere e del tessuto urbano basso.",
+    "fonte": "Protezione Civile Calabria / ISPRA"
+  },
+  {
+    "id": "IT-2023-SIC01",
+    "lat": 38.1121,
+    "lon": 13.3610,
+    "comune": "Palermo (Monte Pellegrino)",
+    "prov": "PA",
+    "regione": "Sicilia",
+    "data": "Novembre 2023",
+    "tipo": "Crollo di blocchi lapidei",
+    "danni": "Distacco dalla parete rocciosa con posizionamento delle reti paramassi.",
+    "fonte": "DRPC Sicilia / ISPRA"
   }
 ]
